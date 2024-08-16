@@ -1,6 +1,6 @@
 # snnipp
 
-This project is a minimal, private code snippet sharing application built with Go, MySQL, and Tailwind CSS. It's designed to be a personal tool for managing and sharing code snippets privately.
+This project is a minimal, private code snippet sharing application built with Go, MySQL, and Tailwind. It's designed to be a personal tool for managing and sharing code snippets privately.
 
 Here you can view it in action: [https://ssnipp.com](https://ssnipp.com/view/1)
 
@@ -8,7 +8,7 @@ Here you can view it in action: [https://ssnipp.com](https://ssnipp.com/view/1)
 
 - **Built with Go**: The application is powered by a Go web server.
 - **MySQL Database**: Snippets are stored in a MySQL database.
-- **Tailwind CSS**: The frontend is styled using Tailwind CSS.
+- **Tailwind**: The frontend is styled using Tailwind.
 
 ## Requirements
 
