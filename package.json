@@ -1,0 +1,24 @@
+{
+  "name": "ssnipp",
+  "version": "1.0.0",
+  "description": "Minimalist and private code snippet sharer",
+  "author": "Benito Lopez",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benitolopez/ssnipp"
+  },
+  "private": true,
+  "scripts": {
+    "watch:go": "nodemon -e go,sql,html --exec 'go run ./cmd/web' --signal SIGTERM",
+    "watch:css": "tailwindcss -i ./src/css/tailwind.css -o ./ui/static/css/main.css --watch",
+    "build": "tailwindcss -i ./src/css/tailwind.css -o ./ui/static/css/main.css --minify",
+    "dev": "concurrently npm:watch:* --kill-others"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4",
+    "tailwindcss": "^3.4.9"
+  }
+}

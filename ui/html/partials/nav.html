@@ -1,0 +1,14 @@
+{{define "nav"}}
+<nav class="pt-4 md:pt-0 flex gap-4">
+    {{if .IsAuthenticated}}
+        <form action='/logout' method='POST'>
+            <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+            <button class="font-medium text-gray-700 hover:text-gray-400">Logout</button>
+        </form>
+    {{else}}
+        {{if .AllowSignup}}
+            <a class="font-medium text-gray-700 hover:text-gray-400" href='/signup'>Signup</a>
+        {{end}}
+    {{end}}
+</nav>
+{{end}}
