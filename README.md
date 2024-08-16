@@ -2,6 +2,8 @@
 
 This project is a minimal, private code snippet sharing application built with Go, MySQL, and Tailwind CSS. It's designed to be a personal tool for managing and sharing code snippets privately.
 
+Here you can view it in action: [https://ssnipp.com](https://ssnipp.com)
+
 ## Features
 
 - **Built with Go**: The application is powered by a Go web server.
@@ -64,7 +66,7 @@ This project is a minimal, private code snippet sharing application built with G
    ```bash
    make build/web
    ```
-   
+
 ## Note on Contributions
 
 This project is maintained as my personal tool for private code snippet sharing. As such, I do not accept pull requests. However, feel free to fork the project and customize it for your own use.
