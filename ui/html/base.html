@@ -5,8 +5,6 @@
         <meta charset='utf-8'>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>{{template "title" .}} - ssnipp</title>
-        <link rel='stylesheet' href='/static/css/main.css'>
-        <link rel="icon" href="/static/img/icon.png" type="image/png" sizes="512x512"/>
 
         <meta name="description" content="Minimalist and private code snippet sharer.">
 		<meta property="og:title" content="ssnipp">
@@ -22,6 +20,9 @@
 		<meta name="twitter:description" content="Minimalist and private code snippet sharer."/>
 		<meta name="twitter:image:type" content="image/png"/>
 		<meta name="twitter:image" content="/static/img/opengraph-image.png"/>
+
+        <link rel='stylesheet' href='/static/css/main.css'>
+        <link rel="icon" href="/static/img/icon.png" type="image/png" sizes="512x512"/>
 
         {{block "styles" .}}{{end}}
     </head>
