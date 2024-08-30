@@ -7,7 +7,7 @@
 {{define "main"}}
     {{with .Snippet}}
         <button id="copy-url" class="mb-4 text-sm text-gray-400">Copy URL</button>
-        <pre class="bg-slate-100 overflow-x-auto p-4 break-words"><code id="snippet" class="language-{{.Language}}">{{.Content}}</code></pre>
+        <pre class="bg-slate-100 overflow-x-auto p-4 break-words max-h-[600px]"><code id="snippet" class="language-{{.Language}}">{{.Content}}</code></pre>
         <button id="copy-button" class="mt-4 block w-full text-gray-100 font-medium bg-gray-950 p-4 rounded">Copy code</button>
     {{end}}
 {{end}}
