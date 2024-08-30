@@ -1,6 +1,16 @@
 // Initialize highlight.js
 hljs.highlightAll();
 
+// Copy URL to clipboard
+const copyUrl = async () => {
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    showCopyMessage();
+  } catch (err) {
+    showCopyMessage("error");
+  }
+}
+
 // Copy to clipboard
 let text = (document.getElementById("snippet").innerText);
 
@@ -14,6 +24,7 @@ const copyContent = async () => {
 }
   
 document.getElementById("copy-button").addEventListener("click", copyContent);
+document.getElementById("copy-url").addEventListener("click", copyUrl);
 
 // Show copy to cliboard message
 showCopyMessage = (messageType = "success") => {
