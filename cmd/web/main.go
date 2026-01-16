@@ -27,6 +27,7 @@ type application struct {
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
 	allowSignup    bool
+	redirectToRaw  bool
 }
 
 // The main() function, which is the entry point for the application.
@@ -112,6 +113,21 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Read the REDIRECT_TO_RAW environment variable to determine whether new
+	// snippets should redirect to the raw view by default. If the environment
+	// variable isn't set, we default to false.
+	redirectToRawStr := os.Getenv("REDIRECT_TO_RAW")
+	if redirectToRawStr == "" {
+		redirectToRawStr = "false"
+	}
+
+	// Parse the REDIRECT_TO_RAW environment variable to a boolean value...
+	redirectToRaw, err := strconv.ParseBool(redirectToRawStr)
+	if err != nil {
+		logger.Error("Error parsing REDIRECT_TO_RAW environment variable")
+		os.Exit(1)
+	}
+
 	// Initialize a new template cache...
 	templateCache, err := newTemplateCache()
 	if err != nil {
@@ -137,6 +153,7 @@ func main() {
 		formDecoder:    formDecoder,
 		sessionManager: sessionManager,
 		allowSignup:    allowSignup,
+		redirectToRaw:  redirectToRaw,
 	}
 
 	// Initialize a new HTTP server...

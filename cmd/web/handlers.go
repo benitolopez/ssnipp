@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
 
@@ -71,6 +72,37 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, http.StatusOK, "view.html", data)
 }
 
+// View raw snippet handler
+func (app *application) snippetRaw(w http.ResponseWriter, r *http.Request) {
+	// Get the ID of the snippet from the URL parameter
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+
+	// Retrieve the snippet from the database
+	snippet, err := app.snippets.Get(id)
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			http.NotFound(w, r)
+		} else {
+			app.serverError(w, r, err)
+		}
+		return
+	}
+
+	// Write a minimal HTML page with the raw content
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	fmt.Fprintf(w, `<!DOCTYPE html>
+<html>
+<head><title>Raw Snippet #%d</title></head>
+<body>
+<pre style="word-wrap: break-word; white-space: pre-wrap;">%s</pre>
+</body>
+</html>`, snippet.ID, template.HTMLEscapeString(snippet.Content))
+}
+
 // Create snippet handler (POST)
 func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request) {
 	var form snippetCreateForm
@@ -107,8 +139,12 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	// Add a flash message to the session
 	app.sessionManager.Put(r.Context(), "flash", "Snippet successfully created!")
 
-	// Redirect to the snippet view page
-	http.Redirect(w, r, fmt.Sprintf("/view/%d", id), http.StatusSeeOther)
+	// Redirect to the snippet view page (or raw view if configured)
+	if app.redirectToRaw {
+		http.Redirect(w, r, fmt.Sprintf("/raw/%d", id), http.StatusSeeOther)
+	} else {
+		http.Redirect(w, r, fmt.Sprintf("/view/%d", id), http.StatusSeeOther)
+	}
 }
 
 // User signup page handler

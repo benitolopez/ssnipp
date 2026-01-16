@@ -27,6 +27,7 @@ func (app *application) routes() http.Handler {
 
 	// Add routes for viewing snippets and user login.
 	mux.Handle("GET /view/{id}", dynamic.ThenFunc(app.snippetView))
+	mux.Handle("GET /raw/{id}", dynamic.ThenFunc(app.snippetRaw))
 	mux.Handle("GET /login", dynamic.ThenFunc(app.userLogin))
 	mux.Handle("POST /login", dynamic.ThenFunc(app.userLoginPost))
 
