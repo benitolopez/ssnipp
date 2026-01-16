@@ -37,6 +37,7 @@ Here you can view it in action: [https://ssnipp.com](https://ssnipp.com/view/1)
    PORT=:4000
    DEBUG=false
    ALLOW_SIGNUP=true
+   REDIRECT_TO_RAW=false
    DB_USERNAME=your_db_username
    DB_PASSWORD=your_db_password
    DB_DATABASE=your_db_database
@@ -44,6 +45,8 @@ Here you can view it in action: [https://ssnipp.com](https://ssnipp.com/view/1)
    DB_TEST_PASSWORD=your_db_test_password
    DB_TEST_DATABASE=your_db_test_database
    ```
+
+   - `REDIRECT_TO_RAW`: When `true`, creating a snippet redirects to the raw view (`/raw/{id}`) instead of the styled view (`/view/{id}`). Default: `false`.
 
    Replace `your_db_username`, `your_db_password`, and `your_db_name` (and test versions) with your actual MySQL credentials.
 
